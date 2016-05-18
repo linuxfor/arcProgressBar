@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                circleProgressBar.setMaxValue(90);
+                circleProgressBar.setMaxValue(100);
                 circleProgressBar.setProgress(90);
             }
         },1000);
