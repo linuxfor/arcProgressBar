@@ -15,7 +15,7 @@ import com.qhung.library.R;
 /**
  * Created by qhung on 2016/5/17.
  */
-public class CircleProgressBar extends View {
+public class ArcProgressBar extends View {
 
     private int maxProgressbarAngle;    //最大弧形角度
     private int startCircleAngle;       //弧形开始的角度
@@ -47,11 +47,11 @@ public class CircleProgressBar extends View {
     private Paint mNumPaint;
     private int animationDuring = 1000;
 
-    public CircleProgressBar(Context context, AttributeSet attrs) {
+    public ArcProgressBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CircleProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ArcProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         init(attrs);
@@ -59,18 +59,18 @@ public class CircleProgressBar extends View {
     }
     private void init(AttributeSet attrs) {
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
-        this.mProgressBarColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_color, Color.BLUE);
-        this.mProgressbarWidth = typedArray.getDimension(R.styleable.CircleProgressBar_progressbar_width, dipToPx(10));
-        this.mTitleText = typedArray.getString(R.styleable.CircleProgressBar_title_text);
-        this.textSize = typedArray.getDimension(R.styleable.CircleProgressBar_text_size, dipToPx(15));
-        this.textColor = typedArray.getColor(R.styleable.CircleProgressBar_text_color, Color.BLACK);
-        this.mProgressbarUnreachedColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_unreached_color, Color.GRAY);
-        this.maxValue = typedArray.getInteger(R.styleable.CircleProgressBar_max_value, 100);
-        this.mTextUnit = typedArray.getString(R.styleable.CircleProgressBar_text_unit);
-        this.numSize = typedArray.getDimension(R.styleable.CircleProgressBar_progress_num_size, dipToPx(80));
-        this.numColor = typedArray.getColor(R.styleable.CircleProgressBar_progress_num_color, Color.BLACK);
-        setCircleAngle(typedArray.getInteger(R.styleable.CircleProgressBar_max_progressbar_angle, 300));
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.ArcProgressBar);
+        this.mProgressBarColor = typedArray.getColor(R.styleable.ArcProgressBar_progressbar_color, Color.BLUE);
+        this.mProgressbarWidth = typedArray.getDimension(R.styleable.ArcProgressBar_progressbar_width, dipToPx(10));
+        this.mTitleText = typedArray.getString(R.styleable.ArcProgressBar_title_text);
+        this.textSize = typedArray.getDimension(R.styleable.ArcProgressBar_text_size, dipToPx(15));
+        this.textColor = typedArray.getColor(R.styleable.ArcProgressBar_text_color, Color.BLACK);
+        this.mProgressbarUnreachedColor = typedArray.getColor(R.styleable.ArcProgressBar_progressbar_unreached_color, Color.GRAY);
+        this.maxValue = typedArray.getInteger(R.styleable.ArcProgressBar_max_value, 100);
+        this.mTextUnit = typedArray.getString(R.styleable.ArcProgressBar_text_unit);
+        this.numSize = typedArray.getDimension(R.styleable.ArcProgressBar_progress_num_size, dipToPx(80));
+        this.numColor = typedArray.getColor(R.styleable.ArcProgressBar_progress_num_color, Color.BLACK);
+        setCircleAngle(typedArray.getInteger(R.styleable.ArcProgressBar_max_progressbar_angle, 300));
         typedArray.recycle();
     }
 

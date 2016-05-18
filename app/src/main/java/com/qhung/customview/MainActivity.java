@@ -4,20 +4,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.qhung.library.widget.CircleProgressBar;
+import com.qhung.library.widget.ArcProgressBar;
 
 public class MainActivity extends AppCompatActivity {
-   private  CircleProgressBar circleProgressBar;
+   private ArcProgressBar arcProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        circleProgressBar = (CircleProgressBar) findViewById(R.id.progressbar);
+        arcProgressBar = (ArcProgressBar) findViewById(R.id.progressbar);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                circleProgressBar.setMaxValue(100);
-                circleProgressBar.setProgress(100);
+                arcProgressBar.setMaxValue(100);
+                arcProgressBar.setProgress(100);
             }
         },1000);
 
