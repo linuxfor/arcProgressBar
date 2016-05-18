@@ -13,6 +13,7 @@
         android:layout_height="250dp"
         custom:progress_num_color="#f041ff"
         custom:progressbar_color="#f041ff"
+        custom:max_progressbar_angle="360"
         custom:progressbar_width="15dp"
         custom:text_unit="步"
         custom:title_text="今天走了" />

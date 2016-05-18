@@ -57,6 +57,22 @@ public class CircleProgressBar extends View {
         init(attrs);
         initView();
     }
+    private void init(AttributeSet attrs) {
+
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
+        this.mProgressBarColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_color, Color.BLUE);
+        this.mProgressbarWidth = typedArray.getDimension(R.styleable.CircleProgressBar_progressbar_width, dipToPx(10));
+        this.mTitleText = typedArray.getString(R.styleable.CircleProgressBar_title_text);
+        this.textSize = typedArray.getDimension(R.styleable.CircleProgressBar_text_size, dipToPx(15));
+        this.textColor = typedArray.getColor(R.styleable.CircleProgressBar_text_color, Color.BLACK);
+        this.mProgressbarUnreachedColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_unreached_color, Color.GRAY);
+        this.maxValue = typedArray.getInteger(R.styleable.CircleProgressBar_max_value, 100);
+        this.mTextUnit = typedArray.getString(R.styleable.CircleProgressBar_text_unit);
+        this.numSize = typedArray.getDimension(R.styleable.CircleProgressBar_progress_num_size, dipToPx(80));
+        this.numColor = typedArray.getColor(R.styleable.CircleProgressBar_progress_num_color, Color.BLACK);
+        setCircleAngle(typedArray.getInteger(R.styleable.CircleProgressBar_max_progressbar_angle, 300));
+        typedArray.recycle();
+    }
 
     private void initView() {
 
@@ -89,22 +105,7 @@ public class CircleProgressBar extends View {
         mNumPaint.setAntiAlias(true);
     }
 
-    private void init(AttributeSet attrs) {
 
-        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
-        this.mProgressBarColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_color, Color.BLUE);
-        this.mProgressbarWidth = typedArray.getDimension(R.styleable.CircleProgressBar_progressbar_width, dipToPx(10));
-        this.mTitleText = typedArray.getString(R.styleable.CircleProgressBar_title_text);
-        this.textSize = typedArray.getDimension(R.styleable.CircleProgressBar_text_size, dipToPx(15));
-        this.textColor = typedArray.getColor(R.styleable.CircleProgressBar_text_color, Color.BLACK);
-        this.mProgressbarUnreachedColor = typedArray.getColor(R.styleable.CircleProgressBar_progressbar_unreached_color, Color.GRAY);
-        this.maxValue = typedArray.getInteger(R.styleable.CircleProgressBar_max_value, 100);
-        this.mTextUnit = typedArray.getString(R.styleable.CircleProgressBar_text_unit);
-        this.numSize = typedArray.getDimension(R.styleable.CircleProgressBar_progress_num_size, dipToPx(80));
-        this.numColor = typedArray.getColor(R.styleable.CircleProgressBar_progress_num_color, Color.BLACK);
-        setCircleAngle(typedArray.getInteger(R.styleable.CircleProgressBar_max_progressbar_angle, 300));
-        typedArray.recycle();
-    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -145,6 +146,17 @@ public class CircleProgressBar extends View {
         if (!animateFinish)
             invalidate();
     }
+    public void setProgress(int value) {
+        if (value > maxValue) {
+            value = maxValue;
+        }
+        if (value < 0) {
+            value = 0;
+        }
+        this.progress = value;
+        setAnimation(0, value, animationDuring);
+
+    }
 
     private void setAnimation(int start, int end, int during) {
         ValueAnimator animator = new ValueAnimator();
@@ -178,7 +190,10 @@ public class CircleProgressBar extends View {
     }
 
     private void setCircleAngle(int angle) {
-        this.maxProgressbarAngle = angle % 360;
+        if (angle > 360)
+            this.maxProgressbarAngle = angle % 360;
+        else
+        this.maxProgressbarAngle = angle;
         startCircleAngle = -maxProgressbarAngle / 2 - 90;
     }
 
@@ -191,17 +206,6 @@ public class CircleProgressBar extends View {
         postInvalidate();
     }
 
-    public void setProgress(int value) {
-        if (value > maxValue) {
-            value = maxValue;
-        }
-        if (value < 0) {
-            value = 0;
-        }
-        this.progress = value;
-        setAnimation(0, value, animationDuring);
-
-    }
 
 
 }
